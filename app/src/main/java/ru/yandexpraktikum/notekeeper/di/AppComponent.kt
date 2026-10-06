@@ -3,13 +3,18 @@ package ru.yandexpraktikum.notekeeper.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import ru.yandexpraktikum.add_note.di.AddNoteSubcomponent
+import ru.yandexpraktikum.all_notes.di.AllNotesSubcomponent
+import ru.yandexpraktikum.core.di.CoreModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [CoreModule::class])
 interface AppComponent {
 
-    fun componentProvider(): ComponentProvider
+    fun getAllNotesSubcomponent() : AllNotesSubcomponent.Factory
+
+    fun getAddNoteSubcomponent() : AddNoteSubcomponent.Factory
 
     @Component.Factory
     interface Factory {

@@ -10,10 +10,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ru.yandexpraktikum.add_note.di.AddNoteComponent
+import ru.yandexpraktikum.add_note.di.AddNoteSubcomponent
 import ru.yandexpraktikum.add_note.presentation.AddNoteScreen
 import ru.yandexpraktikum.add_note.presentation.AddNoteViewModel
-import ru.yandexpraktikum.all_notes.di.AllNotesComponent
+import ru.yandexpraktikum.all_notes.di.AllNotesSubcomponent
 import ru.yandexpraktikum.all_notes.presentation.AllNotesScreen
 import ru.yandexpraktikum.all_notes.presentation.AllNotesViewModel
 import ru.yandexpraktikum.notekeeper.di.AppComponent
@@ -27,16 +27,18 @@ fun NoteKeeperNavHost(
         navController = navController,
         startDestination = Screen.AllNotes.route
     ) {
-        val componentProvider = appComponent.componentProvider()
+
         composable(route = Screen.AllNotes.route) {
-            val allNotesComponent  = componentProvider.initAllNotesComponent()
+            var allNotesComponent by remember { mutableStateOf<AllNotesSubcomponent?>(null) }
+
             DisposableEffect(Unit) {
+                allNotesComponent  = appComponent.getAllNotesSubcomponent().create()
                 onDispose {
-                    componentProvider.clearAllNotesComponent()
+                    allNotesComponent = null
                 }
             }
             val vm: AllNotesViewModel = viewModel(
-                factory = allNotesComponent.allNotesViewModelFactory()
+                factory = appComponent.getAllNotesSubcomponent().create().allNotesViewModelFactory()
             )
             AllNotesScreen(
                 viewModel = vm,
@@ -46,14 +48,15 @@ fun NoteKeeperNavHost(
             )
         }
         composable(route = Screen.AddNote.route) {
-            var addNoteComponent  = componentProvider.initAddNoteComponent()
+            var addNoteComponent by remember { mutableStateOf<Any?>(null) }
             DisposableEffect(Unit) {
+                addNoteComponent  = appComponent.getAddNoteSubcomponent().create()
                 onDispose {
-                    componentProvider.clearAddNoteComponent()
+                    addNoteComponent = null
                 }
             }
             val vm: AddNoteViewModel = viewModel(
-                factory = addNoteComponent?.getAddNoteViewModelFactory()
+                factory = appComponent.getAddNoteSubcomponent().create().getAddNoteViewModelFactory()
             )
             AddNoteScreen(
                 viewModel = vm,

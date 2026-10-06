@@ -7,7 +7,6 @@ import dagger.Module
 import dagger.Provides
 import ru.yandexpraktikum.core.data.db.NoteDao
 import ru.yandexpraktikum.core.data.db.NoteDatabase
-import ru.yandexpraktikum.core.data.mappers.DataNoteMapper
 import ru.yandexpraktikum.core.data.repository.NotesRepositoryImpl
 import ru.yandexpraktikum.core.domain.repository.NotesRepository
 import javax.inject.Singleton
