@@ -1,7 +1,6 @@
 package ru.yandexpraktikum.all_notes.domain.interactors
 
 import kotlinx.coroutines.flow.Flow
-import ru.yandexpraktikum.all_notes.di.AllNotesScope
 import ru.yandexpraktikum.core.domain.model.Note
 import ru.yandexpraktikum.core.domain.repository.NotesRepository
 import javax.inject.Inject
