@@ -2,10 +2,12 @@ package ru.yandexpraktikum.add_note.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import ru.yandexpraktikum.add_note.di.AddNoteScope
 import ru.yandexpraktikum.add_note.domain.interactors.AddNoteInteractor
 import ru.yandexpraktikum.core.presentation.mappers.PresentationNoteMapper
+import javax.inject.Inject
 
-class AddNoteViewModelFactory(
+class AddNoteViewModelFactory @Inject constructor(
     private val addNoteInteractor: AddNoteInteractor,
     private val noteMapper: PresentationNoteMapper
 ) : ViewModelProvider.Factory {

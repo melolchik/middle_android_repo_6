@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import ru.yandexpraktikum.all_notes.di.AllNotesScope
 import ru.yandexpraktikum.all_notes.domain.interactors.DeleteNoteInteractor
 import ru.yandexpraktikum.all_notes.domain.interactors.FetchAllNotesInteractor
 import ru.yandexpraktikum.core.presentation.mappers.PresentationNoteMapper
 import ru.yandexpraktikum.core.presentation.model.NoteUi
+import javax.inject.Inject
 
-class AllNotesViewModel(
+class AllNotesViewModel @Inject constructor(
     private val fetchAllNotesInteractor: FetchAllNotesInteractor,
     private val deleteNoteInteractor: DeleteNoteInteractor,
     private val noteMapper: PresentationNoteMapper

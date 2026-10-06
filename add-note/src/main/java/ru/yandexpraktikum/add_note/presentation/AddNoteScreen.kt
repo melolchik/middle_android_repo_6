@@ -26,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import ru.yandexpraktikum.add_note.R
 import ru.yandexpraktikum.core.presentation.model.NoteUi
 
@@ -33,9 +34,10 @@ import ru.yandexpraktikum.core.presentation.model.NoteUi
 @Composable
 fun AddNoteScreen(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
-    viewModel: AddNoteViewModel
+    viewModel : AddNoteViewModel,
+    onBackClick: () -> Unit
 ) {
+
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 

@@ -2,11 +2,13 @@ package ru.yandexpraktikum.all_notes.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import ru.yandexpraktikum.all_notes.di.AllNotesScope
 import ru.yandexpraktikum.all_notes.domain.interactors.DeleteNoteInteractor
 import ru.yandexpraktikum.all_notes.domain.interactors.FetchAllNotesInteractor
 import ru.yandexpraktikum.core.presentation.mappers.PresentationNoteMapper
+import javax.inject.Inject
 
-class AllNotesViewModelFactory(
+class AllNotesViewModelFactory @Inject constructor(
     private val fetchAllNotesInteractor: FetchAllNotesInteractor,
     private val deleteNoteInteractor: DeleteNoteInteractor,
     private val noteMapper: PresentationNoteMapper
