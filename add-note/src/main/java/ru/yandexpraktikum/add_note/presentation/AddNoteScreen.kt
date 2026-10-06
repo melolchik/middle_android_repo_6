@@ -33,9 +33,10 @@ import ru.yandexpraktikum.core.presentation.model.NoteUi
 @Composable
 fun AddNoteScreen(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
-    viewModel: AddNoteViewModel
+    viewModel : AddNoteViewModel,
+    onBackClick: () -> Unit
 ) {
+
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 
